@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fortani</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        .nav-item a {
+            color: white;
+            font-size: 15pt;
+        }
+
+        body {
+            background: url('assets/1.jpg') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-3">
+        <div class="row justify-content-start">
+            <div class="col-md-4">
+                <img src="assets/logo1.png" style="max-width:100%;">
+            </div>
+            <div class="col-md-8">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color :#9D9191;">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color :#9D9191;">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color :#9D9191;">Pasar Tani</a>
+                    </li>
+                </ul>
+            </div>
+    <div class="container"> <!--membuat class container-->
+        <div class="row justify-content-center"> <!--mengatur posisi "container" ke tengah-->
+            <div class="col-md-6 my-5"> <!--mengatur lebar konten-->
+                    <h3 style="margin-top:25%; color: #1101f1;">LOGIN</h3> <!--memberi tulisan "LOGIN" dan mengatur warna tulisan login-->
+                    <form style="margin-top: 5%;">
+                        <div class="mb-3"> <!--mengatur posisi kolom email-->
+                          <input type="email" style="max-width: 80%;" placeholder="Email Adress" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp" required> <!--membuat kolom email-->
+                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> <!--membuat tulisan di dalam kolom email-->
+                        </div>
+                        <div class="input-group mb-3"> <!--mengatur posisi kolom password-->
+                          <input type="password" style="max-width:72%;" class="form-control password" id="password" placeholder="Password" aria-label="Recipient's username" aria-describedby="basic-addon2"> <!--membuat kolom password-->
+                          <span style="max-width: 20%;" class="input-group-text" id="basic-addon2" onclick="password_show_hide()"> <!--membuat fitur show ato hide password-->
+                              <i class="fas fa-eye" id="show_eye"></i>
+                              <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                          </span>
+                        </div>
+                        <div class="mb-3 form-check"> <!--membuat fitur "ingat saya"-->
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                        </div>
+                        <a href="#" type="submit" class="btn btn-primary login">Submit</a> <!--membuat tombol "submit" untuk login-->
+                    </form>
+            </div>
+            <div class="col-md-6 my-5"> <!--mengatur posisi navigation system-->
+                <ul class="nav justify-content-end">
+                    <li class="nav-item"><!--membuat navigation item baru-->
+                      <a class="nav-link active" aria-current="page" href="#">Home</a> <!--membuat tombol home-->
+                    </li>
+                    <li class="nav-item"><!--membuat navigation item baru-->
+                      <a class="nav-link" href="#">About</a> <!--membuat tombol about-->
+                    </li>
+                    <li class="nav-item"><!--membuat navigation item baru-->
+                      <a class="nav-link" href="#">Company</a><!--membuat tombol company-->
+                    </li>
+                    <li class="nav-item"><!--membuat navigation item baru-->
+                      <a class="nav-link" href="#">Contact Us</a><!--membuat tombol contact us-->
+                    </li>
+                    <li class="nav-item"><!--membuat navigation item baru-->
+                      <a class="nav-link" href="#">Login</a><!--membuat tombol login-->
+                    </li>
+                  </ul>
+                <center>
+                    <img src="assets/4.png" alt="" style="max-width: 90%; margin-left: 10%; margin-top: 10%;"> <!--memberi gambar dan mengatur psosis di sebelah kanan tempat login-->
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+    <script>
+        var toastMixin = Swal.mixin({ //membuat notifikasi sukses login atau gagal login//
+            toast: true,
+            icon: 'success', 
+            title: 'General Title',
+            animation: false,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 3000, //waktu muncul notifikasi//
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer) //jika mouse ada di notifikasi, notifikasi tidak tertutup//
+            toast.addEventListener('mouseleave', Swal.resumeTimer) //jika tidak ada mouse di notifikasi, notifikasi tertutup//
+            }
+        });
+
+        document.querySelector(".login").addEventListener('click', function(){
+
+          let email = "test123@test.com"; //membuat email untuk login//
+          let password = "123123"; //membuat password untuk login//
+
+          if($('.email').val() != '' && $('.password').val() != ''){
+              if($('.email').val() == email && $('.password').val() == password){
+                toastMixin.fire({ //jika email dan password sesuai makan akan di jalankan signed in succesfully//
+                    animation: true,
+                    title: 'Signed in Successfully'
+                });
+              }else{ //jika email dan password salah maka akan di jalankan error dan akan muncul username or password is wrong//
+                toastMixin.fire({
+                    animation: true,
+                    icon: 'error',
+                    title: 'Username or Password is wrong'
+                });
+              }
+          }else{ //jika kolom tidak diisi akan muncul please fill the column//
+              toastMixin.fire({
+                  animation: true,
+                  icon: 'error',
+                  title: 'Please Fill The Column'
+              });
+          }       
+        });
+
+        function password_show_hide() { //membuat fitur show atau hide password//
+          var x = document.getElementById("password");
+          var show_eye = document.getElementById("show_eye"); //membuat variabel untuk menunjukkan password//
+          var hide_eye = document.getElementById("hide_eye"); //membuat variabel untuk merahasiakan password//
+          hide_eye.classList.remove("d-none");
+          if (x.type === "password") { //jika yang diminta bukan password maka password akan ditunjukkan//
+            x.type = "text";
+            show_eye.style.display = "none";
+            hide_eye.style.display = "block";
+          } else { //jika yang diminta adalah password maka password akan dirahasiakan//
+            x.type = "password";
+            show_eye.style.display = "block";
+            hide_eye.style.display = "none";
+        }
+  }
+    </script>
+
+</body>
+</html>
